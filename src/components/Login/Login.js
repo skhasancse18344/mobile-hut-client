@@ -1,7 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  return <div>This is login Page</div>;
+  const { register, handleSubmit } = useForm();
+  const handleLogin = (data) => {
+    console.log(data);
+  };
+  return (
+    <div className="h-[800px] flex justify-center items-center">
+      <div className="w-96">
+        <h2 className="text-3xl p-10 font-bold text-center">Login</h2>
+        <form onSubmit={handleSubmit(handleLogin)}>
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+
+            <input
+              type="email"
+              {...register("email")}
+              placeholder="Enter Your Email"
+              className="input input-bordered w-full "
+            />
+          </div>
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+
+            <input
+              type="password"
+              {...register("password")}
+              placeholder="Enter Your Password"
+              className="input input-bordered w-full "
+            />
+          </div>
+          <select
+            {...register("userType", { required: true })}
+            className="my-10 border p-2"
+          >
+            <option value="">Select...</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+          </select>
+          <br />
+
+          <input className="btn btn-accent w-full" type="submit" />
+          <p className="my-6">
+            New to Mobile Hunt{" "}
+            <Link to={"/signup"} className="text-lime-600">
+              Create New Account
+            </Link>
+          </p>
+
+          <div className="divider">OR</div>
+          <button className="btn btn-outline w-full">
+            CONTINUE WITH GOOGLE
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
