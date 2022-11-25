@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { appendErrors, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const handleLogin = (data) => {
     console.log(data);
   };
@@ -19,10 +23,15 @@ const Login = () => {
 
             <input
               type="email"
-              {...register("email")}
+              {...register("email", {
+                required: "Email Address is required",
+              })}
               placeholder="Enter Your Email"
               className="input input-bordered w-full "
             />
+            {errors.email && (
+              <p className="text-red-600 my-6">{errors.email?.message}</p>
+            )}
           </div>
           <div className="form-control w-full ">
             <label className="label">
@@ -31,19 +40,28 @@ const Login = () => {
 
             <input
               type="password"
-              {...register("password")}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be 6 character or longer",
+                },
+              })}
               placeholder="Enter Your Password"
               className="input input-bordered w-full "
             />
+            {errors.password && (
+              <p className="text-red-600 my-6">{errors.password?.message}</p>
+            )}
           </div>
-          <select
+          {/* <select 
             {...register("userType", { required: true })}
             className="my-10 border p-2"
           >
             <option value="">Select...</option>
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
-          </select>
+          </select> */}
           <br />
 
           <input className="btn btn-accent w-full" type="submit" />
