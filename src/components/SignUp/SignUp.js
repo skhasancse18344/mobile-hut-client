@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthProvider";
 
@@ -9,13 +10,20 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
   const handleSignup = (data) => {
-    console.log(data);
+    // console.log(data);
     createUser(data.email, data.password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        // const user = result.user;
+        // console.log(user);
+        toast("User Created Succesfully");
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {})
+          .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
   };
@@ -76,7 +84,7 @@ const SignUp = () => {
               <p className="text-red-600 my-6">{errors.password?.message}</p>
             )}
           </div>
-          <span className="font-bold text-lg">User Category : </span>{" "}
+          {/* <span className="font-bold text-lg">User Category : </span>{" "}
           <select
             {...register("userType", { required: true })}
             className="my-10 border p-2"
@@ -84,9 +92,9 @@ const SignUp = () => {
             <option value="">Select...</option>
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
-          </select>
+          </select> */}
           <br />
-          <input className="btn btn-accent w-full" type="submit" />
+          <input className="btn btn-accent w-full mt-6" type="submit" />
           <p className="my-6">
             If you already have an accout{" "}
             <Link to={"/login"} className="text-lime-600">

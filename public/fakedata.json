@@ -1,82 +1,17 @@
 [
   {
-    "'id": 1,
-    "category_name": "Symphony",
-    "prodcts": [
-      {
-        "productName": "Symphony Mobile",
-        "sellerLocation": "Dhaka",
-        "productPicture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS739rFFH6dTwwDk3S70lP2nAOFrdAkN4w-2A&usqp=CAU",
-        "originalPrice": "20000",
-        "resalePrice": "2564",
-        "yearsOfUse": "2",
-        "product-condition": "Good",
-        "description": "ksdzjfkjdjvhzgfghdcnxzhgcsdzcbmbh"
-      }
-    ]
+    "category_name": "Symphony"
   },
   {
-    "'id": 2,
-    "category_name": "Samsung",
-    "prodcts": [
-      {
-        "productName": "Symphony Mobile",
-        "sellerLocation": "Dhaka",
-        "productPicture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS739rFFH6dTwwDk3S70lP2nAOFrdAkN4w-2A&usqp=CAU",
-        "originalPrice": "20000",
-        "resalePrice": "2564",
-        "yearsOfUse": "2",
-        "product-condition": "Good",
-        "description": "ksdzjfkjdjvhzgfghdcnxzhgcsdzcbmbh"
-      }
-    ]
+    "category_name": "Samsung"
   },
   {
-    "'id": 3,
-    "category_name": "Nokia",
-    "prodcts": [
-      {
-        "productName": "Symphony Mobile",
-        "sellerLocation": "Dhaka",
-        "productPicture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS739rFFH6dTwwDk3S70lP2nAOFrdAkN4w-2A&usqp=CAU",
-        "originalPrice": "20000",
-        "resalePrice": "2564",
-        "yearsOfUse": "2",
-        "product-condition": "Good",
-        "description": "ksdzjfkjdjvhzgfghdcnxzhgcsdzcbmbh"
-      }
-    ]
+    "category_name": "Nokia"
   },
   {
-    "'id": 4,
-    "category_name": "Motorolla",
-    "prodcts": [
-      {
-        "productName": "Symphony Mobile",
-        "sellerLocation": "Dhaka",
-        "productPicture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS739rFFH6dTwwDk3S70lP2nAOFrdAkN4w-2A&usqp=CAU",
-        "originalPrice": "20000",
-        "resalePrice": "2564",
-        "yearsOfUse": "2",
-        "product-condition": "Good",
-        "description": "ksdzjfkjdjvhzgfghdcnxzhgcsdzcbmbh"
-      }
-    ]
+    "category_name": "Motorolla"
   },
   {
-    "'id": 5,
-    "category_name": "Others..",
-    "prodcts": [
-      {
-        "productName": "Symphony Mobile",
-        "sellerLocation": "Dhaka",
-        "productPicture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS739rFFH6dTwwDk3S70lP2nAOFrdAkN4w-2A&usqp=CAU",
-        "originalPrice": "20000",
-        "resalePrice": "2564",
-        "yearsOfUse": "2",
-        "product-condition": "Good",
-        "description": "ksdzjfkjdjvhzgfghdcnxzhgcsdzcbmbh"
-      }
-    ]
+    "category_name": "Others.."
   }
 ]

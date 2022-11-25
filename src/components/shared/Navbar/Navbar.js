@@ -16,7 +16,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link to="/">Blog</Link>
+        <Link to="/blog">Blog</Link>
       </li>
       {user?.uid ? (
         <>
@@ -62,7 +62,9 @@ const Navbar = () => {
               {menuItems}
             </ul>
           </div>
-          <Link className="btn btn-ghost normal-case text-xl">Mobile Hut</Link>
+          <Link to={"/"} className="btn btn-ghost normal-case text-xl">
+            Mobile Hut
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
