@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { appendErrors, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Contexts/AuthProvider";
 
 const Login = () => {
   const {
@@ -8,8 +10,26 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const { signIn } = useContext(AuthContext);
   const handleLogin = (data) => {
     console.log(data);
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const { providerLogin } = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
+  const handleGoogleSingIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
   };
   return (
     <div className="h-[800px] flex justify-center items-center">
@@ -73,7 +93,10 @@ const Login = () => {
           </p>
 
           <div className="divider">OR</div>
-          <button className="btn btn-outline w-full">
+          <button
+            className="btn btn-outline w-full"
+            onClick={handleGoogleSingIn}
+          >
             CONTINUE WITH GOOGLE
           </button>
         </form>
