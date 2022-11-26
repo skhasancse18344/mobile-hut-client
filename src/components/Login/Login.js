@@ -1,6 +1,6 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import React, { useContext, useState } from "react";
-import { appendErrors, useForm } from "react-hook-form";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthProvider";
 

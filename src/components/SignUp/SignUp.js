@@ -84,7 +84,7 @@ const SignUp = () => {
               <p className="text-red-600 my-6">{errors.password?.message}</p>
             )}
           </div>
-          {/* <span className="font-bold text-lg">User Category : </span>{" "}
+          <span className="font-bold text-lg">User Category : </span>{" "}
           <select
             {...register("userType", { required: true })}
             className="my-10 border p-2"
@@ -92,7 +92,7 @@ const SignUp = () => {
             <option value="">Select...</option>
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
-          </select> */}
+          </select>
           <br />
           <input className="btn btn-accent w-full mt-6" type="submit" />
           <p className="my-6">

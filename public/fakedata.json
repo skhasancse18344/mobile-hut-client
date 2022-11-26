@@ -1,17 +1,17 @@
 [
   {
-    "category_name": "Symphony"
+    "brand": "Symphony"
   },
   {
-    "category_name": "Samsung"
+    "brand": "Samsung"
   },
   {
-    "category_name": "Nokia"
+    "brand": "Nokia"
   },
   {
-    "category_name": "Motorolla"
+    "brand": "Motorolla"
   },
   {
-    "category_name": "Others.."
+    "brand": "Others.."
   }
 ]
