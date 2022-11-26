@@ -43,6 +43,7 @@ const AddProduct = () => {
             sellerMobileNumber: data.sellerMobileNumber,
             description: data.description,
             categoryId: data.categoryId,
+            sellerLocation: data.sellerLocation,
             date: data.productPicture[0].lastModifiedDate,
             productPicture: imageData?.data?.url,
           };
@@ -128,6 +129,18 @@ const AddProduct = () => {
               type="text"
               {...register("yearsOfUse", {})}
               placeholder="Using"
+              className="input input-bordered w-full "
+            />
+          </div>
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="label-text">Seller Location</span>
+            </label>
+
+            <input
+              type="text"
+              {...register("sellerLocation", {})}
+              placeholder="Location"
               className="input input-bordered w-full "
             />
           </div>
