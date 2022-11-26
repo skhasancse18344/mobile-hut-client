@@ -12,11 +12,10 @@ const Login = () => {
   } = useForm();
   const { signIn } = useContext(AuthContext);
   const handleLogin = (data) => {
-    console.log(data);
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
       })
       .catch((err) => console.error(err));
   };
@@ -27,9 +26,25 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        const userType = "buyer";
+        saveUser(user?.email, user?.displayName, userType);
+        // console.log(user);
       })
       .catch((error) => console.error(error));
+  };
+  const saveUser = (email, name, userType) => {
+    const user = { email, name, userType };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("Save User", data);
+      });
   };
   return (
     <div className="h-[800px] flex justify-center items-center">
@@ -74,14 +89,7 @@ const Login = () => {
               <p className="text-red-600 my-6">{errors.password?.message}</p>
             )}
           </div>
-          {/* <select 
-            {...register("userType", { required: true })}
-            className="my-10 border p-2"
-          >
-            <option value="">Select...</option>
-            <option value="buyer">Buyer</option>
-            <option value="seller">Seller</option>
-          </select> */}
+
           <br />
 
           <input className="btn btn-accent w-full" type="submit" />
