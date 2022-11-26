@@ -110,7 +110,11 @@ const SignUp = () => {
             <option value="seller">Seller</option>
           </select>
           <br />
-          <input className="btn btn-accent w-full mt-6" type="submit" />
+          <input
+            className="btn btn-accent w-full mt-6"
+            type="submit"
+            value="Submit"
+          />
           <p className="my-6">
             If you already have an accout{" "}
             <Link to={"/login"} className="text-lime-600">

@@ -92,7 +92,11 @@ const Login = () => {
 
           <br />
 
-          <input className="btn btn-accent w-full" type="submit" />
+          <input
+            className="btn btn-accent w-full"
+            type="submit"
+            value="Submit"
+          />
           <p className="my-6">
             New to Mobile Hunt{" "}
             <Link to={"/signup"} className="text-lime-600">

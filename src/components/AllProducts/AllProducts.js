@@ -7,7 +7,6 @@ const AllProducts = () => {
   const [bookingProduct, setBookingProduct] = useState(null);
   const AllProducts = useLoaderData();
 
-  console.log(AllProducts);
   return (
     <div className="my-16">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-20">
@@ -20,7 +19,10 @@ const AllProducts = () => {
         ))}
       </div>
       {bookingProduct && (
-        <BookingModal bookingProduct={bookingProduct}></BookingModal>
+        <BookingModal
+          bookingProduct={bookingProduct}
+          setBookingProduct={setBookingProduct}
+        ></BookingModal>
       )}
     </div>
   );
