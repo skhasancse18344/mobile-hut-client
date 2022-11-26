@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, setBookingProduct }) => {
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -56,9 +56,13 @@ const ProductCard = ({ product }) => {
             </div>
           </div>
         </div>
-        <button className="width-full bg-slate-900 py-4 text-white font-bold">
+        <label
+          onClick={() => setBookingProduct(product)}
+          htmlFor="booking-modal"
+          className="btn width-full bg-slate-900 py-4 text-white font-bold"
+        >
           Book Now
-        </button>
+        </label>
       </div>
     </div>
   );
