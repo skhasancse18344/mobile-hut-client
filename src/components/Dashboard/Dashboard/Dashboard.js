@@ -1,5 +1,6 @@
 import React from "react";
-import Footer from "../../shared/Footer/Footer";
+// import Footer from "../../shared/Footer/Footer";
+import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Navbar from "../../shared/Navbar/Navbar";
 
@@ -20,7 +21,7 @@ const Dashboard = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-full bg-base-100 text-base-content">
             <li>
-              <a>Sidebar Item 1</a>
+              <Link to={"/dashboard/addproduct"}>Add Product</Link>
             </li>
             <li>
               <a>Sidebar Item 2</a>
