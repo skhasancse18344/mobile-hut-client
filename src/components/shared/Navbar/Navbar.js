@@ -21,6 +21,9 @@ const Navbar = () => {
       {user?.uid ? (
         <>
           <li>
+            <Link to={"/mybookings"}> MyBookings</Link>
+          </li>
+          <li>
             <Link to={"/dashboard"}> Dashboard</Link>
           </li>
           <li>

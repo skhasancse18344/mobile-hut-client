@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 const Categories = () => {
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["category"],
-    queryFn: () =>
-      fetch("http://localhost:5000/category").then((res) => res.json()),
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/category");
+      const data = await res.json();
+      return data;
+    },
   });
   return (
     <div>

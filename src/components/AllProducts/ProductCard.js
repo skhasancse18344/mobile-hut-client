@@ -5,7 +5,7 @@ const ProductCard = ({ product, setBookingProduct }) => {
     <div>
       <div className="card w-96 bg-base-100 shadow-xl">
         <figure>
-          <img src={product?.productPicture} alt="Shoes" className=" h-60" />
+          <img src={product?.productPicture} alt="" className=" h-60" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">
