@@ -1,24 +1,72 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const imagehostkey = process.env.REACT_APP_imgbb_key;
+
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: () =>
       fetch("http://localhost:5000/category").then((res) => res.json()),
   });
   const categoryhandle = (data) => {
-    console.log(data);
+    // console.log(data);
+    const image = data.productPicture[0];
+
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imagehostkey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        if (imageData?.success) {
+          const product = {
+            sellerName: data.sellerName,
+            email: user?.email,
+            productName: data.productName,
+            originalPrice: data.originalPrice,
+            resalePrice: data.resalePrice,
+            yearsOfUse: data.yearsOfUse,
+            productCondition: data.productCondition,
+            sellerMobileNumber: data.sellerMobileNumber,
+            description: data.description,
+            categoryId: data.categoryId,
+            date: data.productPicture[0].lastModifiedDate,
+            productPicture: imageData?.data?.url,
+          };
+
+          //Save Product to the database
+          fetch("http://localhost:5000/products", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              toast.success("One Product Added Successfully");
+            });
+        }
+      });
   };
   return (
     <div className="my-40">
-      <h1 className="text-4xl font-bold text-center my-10">Add Product</h1>
+      <h1 className="text-4xl font-bold text-center my-10 mt-96 md:mt-10 lg:mt-10 ">
+        Add Product
+      </h1>
 
       <form onSubmit={handleSubmit(categoryhandle)}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -31,6 +79,7 @@ const AddProduct = () => {
               type="text"
               {...register("sellerName", {})}
               placeholder="Enter Your Name"
+              defaultValue={user?.displayName}
               className="input input-bordered w-full "
             />
           </div>
@@ -89,31 +138,37 @@ const AddProduct = () => {
 
             <input
               type="text"
-              {...register("product-condition", {})}
+              {...register("productCondition", {})}
               placeholder="Product Condition"
               className="input input-bordered w-full "
             />
           </div>
           <div className="form-control w-full ">
             <label className="label">
-              <span className="label-text">Prodcut Description</span>
+              <span className="label-text">Mobile Number</span>
             </label>
-            <textarea
-              name="description"
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Product Description"
-              className="input input-bordered w-full "
-              {...register("description", {})}
-            ></textarea>
-            {/* <input
+
+            <input
               type="text"
-              {...register("description", {})}
-              placeholder="Product Description"
+              {...register("sellerMobileNumber", {})}
+              placeholder="Product Condition"
               className="input input-bordered w-full "
-            /> */}
+            />
           </div>
+        </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text">Prodcut Description</span>
+          </label>
+          <textarea
+            name="description"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Product Description"
+            className="input input-bordered w-full "
+            {...register("description", {})}
+          ></textarea>
         </div>
         <div className="form-control w-full ">
           <label className="label">
@@ -122,15 +177,17 @@ const AddProduct = () => {
 
           <input
             type="file"
-            {...register("productPicture", {})}
+            {...register("productPicture", {
+              required: "Photo is Required",
+            })}
             placeholder="Enter Your Name"
             className="input input-bordered w-full py-2 "
           />
         </div>
         <span className="font-bold text-lg">Product Category : </span>{" "}
         <select
-          {...register("category_id", { required: true })}
-          className="my-10 border p-2"
+          {...register("categoryId", { required: true })}
+          className="my-10 border p-2 w-1/2 border-lime-800 rounded-lg"
         >
           {categories.map((category) => (
             <option key={category._id} value={category?._id}>
