@@ -14,7 +14,7 @@ const Categories = () => {
   return (
     <div>
       <h1 className="text-xl mt-6 font-bold">Category :</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 ">
         {categories?.map((category) => (
           <div key={category?._id}>
             <Link to={`/category/${category?._id}`}>

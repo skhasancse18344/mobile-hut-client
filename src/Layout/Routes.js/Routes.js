@@ -7,6 +7,7 @@ import Dashboard from "../../components/Dashboard/Dashboard/Dashboard";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
 import MyBookings from "../../components/MyBookings/MyBookings";
+import MyProducts from "../../components/MyProducts/MyProducts";
 import SignUp from "../../components/SignUp/SignUp";
 import Main from "../Main/Main";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
         path: "/blog",
         element: <Blog></Blog>,
       },
+
       {
         path: "/category/:id",
         element: (
@@ -67,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/allusers",
         element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "/dashboard/myproducts",
+        element: <MyProducts></MyProducts>,
       },
     ],
   },
