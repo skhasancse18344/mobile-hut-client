@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { FaUserAltSlash } from "react-icons/fa";
 
 const AllUsers = () => {
   const { data: allUsers = [], refetch } = useQuery({
@@ -14,6 +15,9 @@ const AllUsers = () => {
   const handleMakeAdmin = (id) => {
     fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -22,6 +26,36 @@ const AllUsers = () => {
           toast.success("Make Admin Successfully");
           refetch();
         }
+      });
+  };
+  const handleVerifyUser = (id) => {
+    fetch(`http://localhost:5000/users/varify/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          toast.success("User Verified");
+          refetch();
+        }
+      });
+  };
+  const handleUserDelete = (id) => {
+    fetch(`http://localhost:5000/users/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("User Deleted Successfully");
+        refetch();
       });
   };
   return (
@@ -38,6 +72,7 @@ const AllUsers = () => {
                 <th>Status</th>
                 <th>Varify</th>
                 <th>Admin</th>
+                <th>Delete User</th>
               </tr>
             </thead>
             <tbody>
@@ -48,9 +83,14 @@ const AllUsers = () => {
                   <td>{user?.email}</td>
                   <td>{user?.userType}</td>
                   <td>
-                    <button className="badge badge-secondary p-4">
-                      Varify User
-                    </button>
+                    {user?.varification !== "Varified" && (
+                      <button
+                        onClick={() => handleVerifyUser(user?._id)}
+                        className="badge badge-secondary p-4"
+                      >
+                        Varify User
+                      </button>
+                    )}
                   </td>
                   <td>
                     {user?.role !== "admin" && (
@@ -61,6 +101,14 @@ const AllUsers = () => {
                         Make Admin
                       </button>
                     )}
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleUserDelete(user?._id)}
+                      className="text-xl from-inherit"
+                    >
+                      <FaUserAltSlash></FaUserAltSlash>
+                    </button>
                   </td>
                 </tr>
               ))}

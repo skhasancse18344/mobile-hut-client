@@ -37,7 +37,6 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        setLoginUserEmail(user?.email);
         const userType = "buyer";
         saveUser(user?.email, user?.displayName, userType);
         // console.log(user);
