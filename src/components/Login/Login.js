@@ -1,20 +1,24 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthProvider";
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const { signIn } = useContext(AuthContext);
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (data) => {
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true });
         // console.log(user);
       })
       .catch((err) => console.error(err));
@@ -28,6 +32,7 @@ const Login = () => {
         const user = result.user;
         const userType = "buyer";
         saveUser(user?.email, user?.displayName, userType);
+        navigate(from, { replace: true });
         // console.log(user);
       })
       .catch((error) => console.error(error));

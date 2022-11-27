@@ -14,7 +14,7 @@ const Dashboard = () => {
           type="checkbox"
           className="drawer-toggle"
         />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col ">
           <Outlet></Outlet>
         </div>
         <div className="drawer-side">
@@ -24,7 +24,7 @@ const Dashboard = () => {
               <Link to={"/dashboard/addproduct"}>Add Product</Link>
             </li>
             <li>
-              <Link to={"/dashboard/allusers"}>All Users</Link>
+              <Link to={"/dashboard/allusers"}>All User</Link>
             </li>
           </ul>
         </div>

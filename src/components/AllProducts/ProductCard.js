@@ -1,4 +1,5 @@
 import React from "react";
+import { FaCheckCircle } from "react-icons/fa";
 
 const ProductCard = ({ product, setBookingProduct }) => {
   return (
@@ -8,9 +9,13 @@ const ProductCard = ({ product, setBookingProduct }) => {
           <img src={product?.productPicture} alt="" className=" h-60" />
         </figure>
         <div className="card-body">
+          <h2 className="card-title">{product?.productName}</h2>
           <h2 className="card-title">
-            {product?.productName}
-            <div className="badge badge-secondary">Varified</div>
+            <span className=" text-lime-700">Seller Name :</span>{" "}
+            {product?.sellerName}{" "}
+            <span className="  text-blue-700">
+              <FaCheckCircle />
+            </span>
           </h2>
 
           <div className="card-actions justify-between flex-col">

@@ -9,6 +9,7 @@ import Login from "../../components/Login/Login";
 import MyBookings from "../../components/MyBookings/MyBookings";
 import SignUp from "../../components/SignUp/SignUp";
 import Main from "../Main/Main";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -25,13 +26,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/category/:id",
-        element: <AllProducts></AllProducts>,
+        element: (
+          <PrivateRoute>
+            <AllProducts></AllProducts>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params?.id}`),
       },
       {
         path: "/mybookings",
-        element: <MyBookings></MyBookings>,
+        element: (
+          <PrivateRoute>
+            <MyBookings></MyBookings>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -45,7 +54,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/addproduct",

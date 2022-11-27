@@ -64,8 +64,8 @@ const AddProduct = () => {
       });
   };
   return (
-    <div className="my-40">
-      <h1 className="text-4xl font-bold text-center my-10 mt-96 md:mt-10 lg:mt-10 ">
+    <div className="my-16">
+      <h1 className="text-4xl font-bold text-center my-10 mt-10 md:mt-10 lg:mt-10 ">
         Add Product
       </h1>
 

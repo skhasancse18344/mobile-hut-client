@@ -15,6 +15,7 @@ const MyBookings = () => {
   return (
     <div>
       <h1 className="text-4xl font-bold text-center my-10">My Orders</h1>
+
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-20 ">
         {bookings.map((bookingProduct) => (
           <BookingCard
