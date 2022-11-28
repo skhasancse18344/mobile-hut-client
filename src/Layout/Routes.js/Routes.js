@@ -4,6 +4,7 @@ import Blog from "../../components/Blog/Blog";
 import AddProduct from "../../components/Dashboard/AddProduct/AddProduct";
 import AllUsers from "../../components/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../components/Dashboard/Dashboard/Dashboard";
+import ErrorPage from "../../components/ErrorPage/ErrorPage";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
 import MyBookings from "../../components/MyBookings/MyBookings";
@@ -14,6 +15,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
+    errorElement: <ErrorPage></ErrorPage>,
     path: "/",
     element: <Main></Main>,
     children: [

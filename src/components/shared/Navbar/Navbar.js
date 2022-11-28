@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import image from "../../../assets/favicon.png";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Navbar = () => {
@@ -39,8 +40,8 @@ const Navbar = () => {
     </React.Fragment>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div className="">
+      <div className="navbar bg-base-100 ">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -67,7 +68,8 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"} className="btn btn-ghost normal-case text-xl">
-            Mobile Hut
+            <img className="w-10 h-10" src={image} alt="" />
+            <span className="font-bold text-emerald-600 mr-2"> Mobile</span> Hut
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

@@ -1,9 +1,54 @@
 import React from "react";
+import toast from "react-hot-toast";
 
-const MyProductCard = ({ myProduct }) => {
+const MyProductCard = ({ myProduct, refetch }) => {
+  const handleProductDelete = (id) => {
+    fetch(`http://localhost:5000/myproduct/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        refetch();
+      });
+  };
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/myBookingDelete/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("User Deleted Successfully");
+        refetch();
+      });
+  };
+  const handleProductAdvertise = (id) => {
+    fetch(`http://localhost:5000/advertiseproduct/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          toast.success("This Product On Advertise");
+          refetch();
+        }
+      });
+  };
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card  bg-base-100 shadow-xl">
         <figure>
           <img src={myProduct.productPicture} alt="" className=" h-60" />
         </figure>
@@ -14,11 +59,22 @@ const MyProductCard = ({ myProduct }) => {
           <span className="  pl-8  font-bold text-lime-700">
             Product Price:
           </span>{" "}
-          {myProduct?.productPrice}
+          {myProduct?.resalePrice}
         </div>
-        <label className="btn width-full bg-slate-900 py-4 text-white font-bold">
-          Make Payment
-        </label>
+        <div className="mx-auto">
+          <label
+            onClick={() => handleProductAdvertise(myProduct?._id)}
+            className="btn w-26 m-6 text-white font-bold btn-sm bg-sky-600"
+          >
+            Advertise
+          </label>
+          <label
+            onClick={() => handleProductDelete(myProduct?._id)}
+            className="btn w-26 m-6 text-white font-bold bg-red-800 btn-sm"
+          >
+            <button onClick={() => handleDelete(myProduct?._id)}>Delete</button>
+          </label>
+        </div>
       </div>
     </div>
   );

@@ -22,7 +22,9 @@ const MyBookings = () => {
   });
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center my-10">My Orders</h1>
+      <h1 className="text-4xl font-bold text-center my-10">
+        My <span className="text-emerald-600 ml-2">Orders</span>
+      </h1>
       {bookings.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-screen">
           {" "}

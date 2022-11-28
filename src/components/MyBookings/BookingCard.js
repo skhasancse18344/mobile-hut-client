@@ -13,7 +13,7 @@ const BookingCard = ({ bookingProduct }) => {
   } = bookingProduct;
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card bg-base-100 shadow-xl">
         <figure>
           <img src={productPicture} alt="" className=" h-60" />
         </figure>

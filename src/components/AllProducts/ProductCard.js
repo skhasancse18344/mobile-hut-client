@@ -4,7 +4,7 @@ import { FaCheckCircle } from "react-icons/fa";
 const ProductCard = ({ product, setBookingProduct }) => {
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card  bg-base-100 shadow-xl">
         <figure>
           <img src={product?.productPicture} alt="" className=" h-60" />
         </figure>

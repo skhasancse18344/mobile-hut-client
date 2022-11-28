@@ -13,7 +13,11 @@ const Categories = () => {
   });
   return (
     <div>
-      <h1 className="text-xl mt-6 font-bold">Category :</h1>
+      <h1 className="text-4xl my-20 font-bold text-center">
+        {" "}
+        <span className="text-emerald-600 mr-2">Select A Brand To</span>
+        Order Your One :
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 ">
         {categories?.map((category) => (
           <div key={category?._id}>
