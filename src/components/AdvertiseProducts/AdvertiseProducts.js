@@ -7,7 +7,9 @@ const AdvertiseProducts = () => {
   const { data: advertisePrudct = [] } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertisePrudct");
+      const res = await fetch(
+        "https://mobile-hut-server.vercel.app/advertisePrudct"
+      );
       const data = await res.json();
       return data;
     },

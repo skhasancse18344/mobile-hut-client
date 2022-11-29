@@ -5,7 +5,7 @@ import MyProductCard from "./MyProductCard";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  const url = `http://localhost:5000/myproduct/${user?.email}`;
+  const url = `https://mobile-hut-server.vercel.app/myproduct/${user?.email}`;
 
   const { data: myProducts = [], refetch } = useQuery({
     queryKey: ["myProducts", user?.email],

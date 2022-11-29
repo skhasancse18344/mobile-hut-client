@@ -1,23 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
-import { FaUserAltSlash } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const AllUsers = () => {
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allusers");
+      const res = await fetch("https://mobile-hut-server.vercel.app/allusers");
       const data = await res.json();
       return data;
     },
   });
-  const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+  const handleMakeAdmin = (email) => {
+    fetch(`https://mobile-hut-server.vercel.app/users/admin/${email}`, {
       method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -28,12 +25,22 @@ const AllUsers = () => {
         }
       });
   };
-  const handleVerifyUser = (id) => {
-    fetch(`http://localhost:5000/users/varify/${id}`, {
+  const handleRemoveAdmin = (email) => {
+    fetch(`https://mobile-hut-server.vercel.app/users/noadmin/${email}`, {
       method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          toast.success("Admin Removed Successfully");
+          refetch();
+        }
+      });
+  };
+  const handleVerifyUser = (email) => {
+    fetch(`https://mobile-hut-server.vercel.app/users/varify/${email}`, {
+      method: "PUT",
     })
       .then((res) => res.json())
       .then((data) => {
@@ -44,12 +51,23 @@ const AllUsers = () => {
         }
       });
   };
-  const handleUserDelete = (id) => {
-    fetch(`http://localhost:5000/users/delete/${id}`, {
+  const handleUnverifyUser = (email) => {
+    fetch(`https://mobile-hut-server.vercel.app/users/unvarify/${email}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          toast.success("User Unvarified");
+          refetch();
+        }
+      });
+  };
+  const handleUserDelete = (email) => {
+    console.log(email);
+    fetch(`https://mobile-hut-server.vercel.app/users/delete/${email}`, {
       method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -60,7 +78,7 @@ const AllUsers = () => {
   };
   return (
     <div className="">
-      <h1 className="text-4xl font-bold my-16 ">All Users </h1>
+      <h1 className="text-4xl font-bold my-16 text-center">All Users </h1>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">
@@ -83,31 +101,45 @@ const AllUsers = () => {
                   <td>{user?.email}</td>
                   <td>{user?.userType}</td>
                   <td>
-                    {user?.varification !== "Varified" && (
+                    {user?.varification !== "Varified" ? (
                       <button
-                        onClick={() => handleVerifyUser(user?._id)}
+                        onClick={() => handleVerifyUser(user?.email)}
                         className="badge badge-secondary p-4"
                       >
                         Varify User
                       </button>
+                    ) : (
+                      <button
+                        className="badge  badge-warning text-white p-4 px-6"
+                        onClick={() => handleUnverifyUser(user?.email)}
+                      >
+                        Unvarify
+                      </button>
                     )}
                   </td>
                   <td>
-                    {user?.role !== "admin" && (
+                    {user?.role !== "admin" ? (
                       <button
-                        onClick={() => handleMakeAdmin(user?._id)}
-                        className="badge badge-secondary p-4"
+                        onClick={() => handleMakeAdmin(user?.email)}
+                        className="badge badge-secondary p-4  px-6"
                       >
                         Make Admin
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleRemoveAdmin(user?.email)}
+                        className="badge p-4 badge-warning text-white "
+                      >
+                        Remove Admin
                       </button>
                     )}
                   </td>
                   <td>
                     <button
-                      onClick={() => handleUserDelete(user?._id)}
+                      onClick={() => handleUserDelete(user?.email)}
                       className="text-xl from-inherit"
                     >
-                      <FaUserAltSlash></FaUserAltSlash>
+                      <MdDelete></MdDelete>
                     </button>
                   </td>
                 </tr>

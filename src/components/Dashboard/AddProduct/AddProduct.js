@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { format } from "date-fns";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Contexts/AuthProvider";
@@ -16,7 +17,9 @@ const AddProduct = () => {
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: () =>
-      fetch("http://localhost:5000/category").then((res) => res.json()),
+      fetch("https://mobile-hut-server.vercel.app/category").then((res) =>
+        res.json()
+      ),
   });
   const categoryhandle = (data) => {
     // console.log(data);
@@ -32,6 +35,7 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((imageData) => {
         if (imageData?.success) {
+          const date = new Date();
           const product = {
             sellerName: data.sellerName,
             email: user?.email,
@@ -44,12 +48,12 @@ const AddProduct = () => {
             description: data.description,
             categoryId: data.categoryId,
             sellerLocation: data.sellerLocation,
-            date: data.productPicture[0].lastModifiedDate,
+            date: format(date, "PP"),
             productPicture: imageData?.data?.url,
           };
 
           //Save Product to the database
-          fetch("http://localhost:5000/products", {
+          fetch("https://mobile-hut-server.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",

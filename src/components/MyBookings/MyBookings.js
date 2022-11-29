@@ -9,12 +9,7 @@ const MyBookings = () => {
     queryKey: ["mybookings/:email"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/mybookings/${user?.email}`,
-        {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
+        `https://mobile-hut-server.vercel.app/dashboard/mybookings/${user?.email}`
       );
       const data = await res.json();
       return data;

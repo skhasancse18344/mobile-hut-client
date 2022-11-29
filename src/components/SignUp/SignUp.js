@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import useToken from "../../hooks/useToken";
+
 import { AuthContext } from "../Contexts/AuthProvider";
 
 const SignUp = () => {
@@ -12,12 +12,8 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
   const { createUser, updateUser } = useContext(AuthContext);
-  const [createdUserEmail, setCreatedUserEmail] = useState("");
+
   const navigate = useNavigate();
-  const [token] = useToken(createdUserEmail);
-  if (token) {
-    navigate("/");
-  }
 
   const handleSignup = (data) => {
     // console.log(data);
@@ -32,14 +28,16 @@ const SignUp = () => {
         updateUser(userInfo)
           .then(() => {
             saveUser(data.email, data.name, data.userType);
+            navigate("/");
           })
           .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
   };
+
   const saveUser = (email, name, userType) => {
     const user = { email, name, userType };
-    fetch("http://localhost:5000/users", {
+    fetch("https://mobile-hut-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -48,7 +46,6 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCreatedUserEmail(email);
         // console.log("Save User", data);
       });
   };
