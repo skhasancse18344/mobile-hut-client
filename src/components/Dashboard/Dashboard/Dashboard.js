@@ -73,6 +73,9 @@ const Dashboard = () => {
                 <li>
                   <Link to={"/dashboard/allbuyer"}>All Buyer</Link>
                 </li>
+                <li>
+                  <Link to={"/dashboard/mybookings"}> My Bookings</Link>
+                </li>
               </>
             )}
           </ul>
