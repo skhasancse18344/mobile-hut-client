@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import AllProducts from "../../components/AllProducts/AllProducts";
 import Blog from "../../components/Blog/Blog";
 import AddProduct from "../../components/Dashboard/AddProduct/AddProduct";
-import AllUsers from "../../components/Dashboard/AllUsers/AllUsers";
+import AllBuyers from "../../components/Dashboard/AllUsers/AllBuyers";
+import Allslellers from "../../components/Dashboard/AllUsers/Allslellers";
 import Dashboard from "../../components/Dashboard/Dashboard/Dashboard";
 import ErrorPage from "../../components/ErrorPage/ErrorPage";
 import Home from "../../components/Home/Home";
@@ -70,7 +71,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allusers",
-        element: <AllUsers></AllUsers>,
+        element: <Allslellers></Allslellers>,
+      },
+      {
+        path: "/dashboard/allbuyer",
+        element: <AllBuyers></AllBuyers>,
       },
       {
         path: "/dashboard/mybookings",

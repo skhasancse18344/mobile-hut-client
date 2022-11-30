@@ -33,6 +33,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         const userType = "buyer";
+
         saveUser(user?.email, user?.displayName, userType);
 
         // console.log(user);
@@ -40,7 +41,13 @@ const Login = () => {
       .catch((error) => console.error(error));
   };
   const saveUser = (email, name, userType) => {
-    const user = { email, name, userType };
+    const user = {
+      email,
+      name,
+      userType,
+      varification: "Unvarified",
+      role: "adminRemoved",
+    };
     fetch("https://mobile-hut-server.vercel.app/users", {
       method: "POST",
       headers: {

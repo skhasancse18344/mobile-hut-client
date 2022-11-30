@@ -3,11 +3,11 @@ import React from "react";
 import { FaCheckCircle, FaLocationArrow } from "react-icons/fa";
 import { BsCalendarDate } from "react-icons/bs";
 // import { FaLocationArrow } from "react-icons/io";
-import { BallTriangle } from "react-loader-spinner";
+// import { BallTriangle } from "react-loader-spinner";
 
 const ProductCard = ({ product, setBookingProduct }) => {
-  const { isLoading, data: uservarified = [] } = useQuery({
-    queryKey: ["option"],
+  const { data: uservarified = [] } = useQuery({
+    queryKey: ["usersVar", product?.email],
     queryFn: async () => {
       const res = await fetch(
         `https://mobile-hut-server.vercel.app/usersVar/${product?.email}`
@@ -17,20 +17,20 @@ const ProductCard = ({ product, setBookingProduct }) => {
       return data;
     },
   });
-  if (isLoading) {
-    <div className="flex flex-col items-center justify-center h-screen">
-      <BallTriangle
-        height={100}
-        width={100}
-        radius={5}
-        color="#4fa94d"
-        ariaLabel="ball-triangle-loading"
-        wrapperClass={{}}
-        wrapperStyle=""
-        visible={true}
-      />
-    </div>;
-  }
+  // if (isLoading) {
+  //   <div className="flex flex-col items-center justify-center h-screen">
+  //     <BallTriangle
+  //       height={100}
+  //       width={100}
+  //       radius={5}
+  //       color="#4fa94d"
+  //       ariaLabel="ball-triangle-loading"
+  //       wrapperClass={{}}
+  //       wrapperStyle=""
+  //       visible={true}
+  //     />
+  //   </div>;
+  // }
   return (
     <div>
       <div className="card  bg-base-100 shadow-xl">

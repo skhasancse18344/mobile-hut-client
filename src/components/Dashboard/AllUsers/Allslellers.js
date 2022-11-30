@@ -3,11 +3,11 @@ import React from "react";
 import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
 
-const AllUsers = () => {
+const Allslellers = () => {
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await fetch("https://mobile-hut-server.vercel.app/allusers");
+      const res = await fetch("https://mobile-hut-server.vercel.app/allseller");
       const data = await res.json();
       return data;
     },
@@ -78,7 +78,7 @@ const AllUsers = () => {
   };
   return (
     <div className="">
-      <h1 className="text-4xl font-bold my-16 text-center">All Users </h1>
+      <h1 className="text-4xl font-bold my-16 text-center">All Seller </h1>
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">
@@ -152,4 +152,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default Allslellers;

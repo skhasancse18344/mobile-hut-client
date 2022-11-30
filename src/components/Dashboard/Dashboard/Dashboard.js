@@ -66,17 +66,12 @@ const Dashboard = () => {
                 <h1 className="text-2xl font-bold text-center my-6 text-green-800">
                   Admin:
                 </h1>
+
                 <li>
-                  <Link to={"/dashboard/addproduct"}>Add Product</Link>
+                  <Link to={"/dashboard/allusers"}>All Seller</Link>
                 </li>
                 <li>
-                  <Link to={"/dashboard/allusers"}>All User</Link>
-                </li>
-                <li>
-                  <Link to={"/dashboard/myproducts"}> My Products</Link>
-                </li>
-                <li>
-                  <Link to={"/dashboard/mybookings"}> My Bookings</Link>
+                  <Link to={"/dashboard/allbuyer"}>All Buyer</Link>
                 </li>
               </>
             )}

@@ -36,7 +36,13 @@ const SignUp = () => {
   };
 
   const saveUser = (email, name, userType) => {
-    const user = { email, name, userType };
+    const user = {
+      email,
+      name,
+      userType,
+      varification: "Unvarified",
+      role: "adminRemoved",
+    };
     fetch("https://mobile-hut-server.vercel.app/users", {
       method: "POST",
       headers: {
