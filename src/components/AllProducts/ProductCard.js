@@ -3,7 +3,6 @@ import React from "react";
 import { FaCheckCircle, FaLocationArrow } from "react-icons/fa";
 import { BsCalendarDate } from "react-icons/bs";
 
-
 const ProductCard = ({ product, setBookingProduct }) => {
   const { data: uservarified = [] } = useQuery({
     queryKey: ["usersVar", product?.email],
@@ -16,7 +15,7 @@ const ProductCard = ({ product, setBookingProduct }) => {
       return data;
     },
   });
- 
+
   return (
     <div>
       <div className="card  bg-base-100 shadow-xl">
